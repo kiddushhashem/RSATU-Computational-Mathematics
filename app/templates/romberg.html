@@ -1,0 +1,57 @@
+{% extends "index.html" %}
+{% block content %}
+<h1>Romberg's integration method</h1>
+<div class="plot_container">
+    <div class="block_form">
+        <form action="/romberg" method="post">
+            <br>
+            <label for="">
+                <p>Function f(x):</p>
+                <input type="text" name="formula" value="sin(x)" required />
+                <p>Lower limit:</p>
+                <input type="text" name="a" value="0" required />
+                <p>Upper limit:</p>
+                <input type="text" name="b" value="3.14" required />
+                <p>Accuracy:</p>
+                <input type="number" step="any" name="accuracy" value="0.001" required />
+            </label>
+            <br>
+            <button class="btn btn-primary" type="submit">Calculate</button>
+            <br>
+        </form>
+    </div>
+    <div class="block_img">
+        {% if plot_url %}
+        <img src="{{ plot_url }}" alt="Chart cannoot be displayed">
+        {% endif %}
+    </div>
+</div>
+<div class="block_formula">
+    {% if formulaResult %}
+    $${{ formula0 }}$$
+    $${{ formulaTrapezium }}$$
+    $${{ formulaRichardson }}$$
+    $${{ formulaResult }}$$
+    {% endif %}
+</div>
+<div class="block_table">
+    {% if formulaResult %}
+    <table class="table">
+        <th>$$R$$</th>
+        {% for cell in result[0] %}
+        <th>$$R_{ {{ loop.index0 }} }$$</th>
+        {% endfor %}
+        {% for row in result %}
+        <tr>
+            <td>$${{ loop.index0 }}$$</td>
+            {% for cell in row %}
+            <td>$${{ cell if cell is not none else '' }}$$</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
+
+
+{% endblock %}

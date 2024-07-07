@@ -1,0 +1,68 @@
+{% extends "index.html" %}
+{% block content %}
+<h1>Lagrange Interpolating Polynomial Derivative</h1>
+<div class="plot_container">
+    <div class="block_form">
+        <form action="polylagrangederivative" method="post">
+            <p>Coordinates:</p>
+            <textarea class="coords-data" name="coordinates">0;0
+5.01;0.18
+10.09;1.05
+13.98;1.73
+16.62;2.35
+18.01;2.96
+22.53;3.76
+25.33;4.48
+28.03;5.28
+30.42;6.12
+32.06;7.09
+33.62;8</textarea>
+            <br>
+            <button class="btn btn-primary" type="submit">Calculate</button>
+            <br>
+        </form>
+    </div>
+    <div class="block_img">
+        {% if plot_url %}
+        <img src="{{ plot_url }}" alt="Chart cannoot be displayed">
+        {% endif %}
+    </div>
+</div>
+<div class="block_formula">
+    {% if formula3 %}
+    $${{ formula3 }}$$
+    $${{ formula5 }}$$
+    {% endif %}
+</div>
+<div class="block_table">
+    {% if formula3 %}
+    <table class="table">
+        <tr>
+            <th>$$X$$</th>
+            {% for val in x %}
+            <td>$${{ val }}$$</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>$$Y$$</th>
+            {% for val in y %}
+            <td>$${{ val }}$$</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>$$f'(x)$$ (3)</th>
+            {% for val in result %}
+            <td>$${{ val }}$$</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>$$f'(x)$$ (5)</th>
+            {% for val in result5 %}
+            <td>$${{ val }}$$</td>
+            {% endfor %}
+        </tr>
+    </table>
+    {% endif %}
+</div>
+
+{% endblock %}

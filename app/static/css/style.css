@@ -1,0 +1,51 @@
+.wrapper {
+    display: flexbox;
+}
+
+h1 {
+    margin-top: 20px;
+    padding-bottom: 40px;
+}
+
+.plot_container {
+    display: flex;
+}
+
+.block_form {
+    margin-left: 10px;
+    flex: 1;
+}
+
+.block_img {
+    flex: 2;
+}
+
+.block_img img {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.block_form textarea {
+    width: 200px; 
+    height: 300px; 
+    font-size: 20px;
+}
+
+.block_form input {
+    width: 200px; 
+    height: 30px; 
+    font-size: 20px;
+}
+
+.block_form p {
+    font-size: 20px;
+    padding-top: 20px;
+}
+
+.block_formula {
+    padding-top: 40px;   
+}
+
+.block_table {
+    text-align: center;
+}

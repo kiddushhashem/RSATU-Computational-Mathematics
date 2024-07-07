@@ -1,0 +1,39 @@
+{% extends "index.html" %}
+{% block content %}
+<h1>Least Squares Method</h1>
+<div class="plot_container">
+    <div class="block_form">
+        <form action="mnk" method="post">
+            <p>Coordinates:</p>
+            <textarea class="coords-data" name="coordinates">-100;4.06
+-75;6.78
+-50;9.49
+-25;16.27
+0;40.67
+25;97.62
+50;146.63
+75;151.85
+100;162.7</textarea>
+            <br>
+            <p>Polynomial degree:</p>
+            <label for="">
+                <input type="number" name="P" value="3" maxlength="1" required />
+            </label>
+            <br>
+            <button class="btn btn-primary" type="submit">Calculate</button>
+            <br>
+        </form>
+    </div>
+    <div class="block_img">
+        {% if plot_url %}
+        <img src="{{ plot_url }}" alt="Chart cannoot be displayed">
+        {% endif %}
+    </div>
+</div>
+<div class="block_formula">
+    {% if formula %}
+    $${{ formula }}$$
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "index.html" %}
+{% block content %}
+<h1>Aitken extrapolation</h1>
+<div class="plot_container">
+    <div class="block_form">
+        <form action="/aitken" method="post">
+            <p>Coordinates:</p>
+            <textarea class="coords-data" name="coordinates" required>10;0.17365
+20;0.34202
+30;0.5
+40;0.64279
+50;0.76604
+60;0.86603</textarea>
+            <br>
+            <label for="">
+                <input type="number" name="find" value="23" required />
+            </label>
+            <br>
+            <button class="btn btn-primary" type="submit">Calculate</button>
+            <br>
+        </form>
+    </div>
+    <div class="block_img">
+        {% if plot_url %}
+        <img src="{{ plot_url }}" alt="Chart cannoot be displayed">
+        {% endif %}
+    </div>
+</div>
+<div class="block_formula">
+    {% if formula %}
+    $${{ formula }}$$
+    $${{ formula_numerical }}$$
+    {% endif %}
+</div>
+<div class="block_table">
+    {% if formula %}
+    <table class="table">
+        <th>$$i$$</th>
+        {% for cell in result[0] %}
+        <th>$$y_{i{{ loop.index0 }}}$$</th>
+        {% endfor %}
+        {% for row in result %}
+        <tr>
+            <td>$${{ loop.index0 }}$$</td>
+            {% for cell in row %}
+            <td>$${{ cell if cell is not none else '' }}$$</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</div>
+
+{% endblock %}
